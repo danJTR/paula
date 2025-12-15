@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<title>Paula</title>
+<style>
+html,body{
+margin:0;
+padding:0;
+width:100%;
+height:100%;
+overflow:hidden;
+background:linear-gradient(120deg,#ff5fa2,#ff9acb,#ffc1dc);
+font-family:'Segoe UI',sans-serif;
+}
+#container{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+text-align:center;
+color:white;
+z-index:2;
+}
+#name{
+font-size:80px;
+font-weight:700;
+animation:pulse 2.5s infinite;
+text-shadow:0 0 20px rgba(255,255,255,0.6);
+}
+#subtitle{
+font-size:22px;
+margin-top:10px;
+opacity:0.9;
+}
+@keyframes pulse{
+0%{transform:scale(1)}
+50%{transform:scale(1.08)}
+100%{transform:scale(1)}
+}
+.heart{
+position:fixed;
+top:-10%;
+font-size:20px;
+color:rgba(255,255,255,0.9);
+animation:fall linear forwards;
+pointer-events:none;
+}
+@keyframes fall{
+0%{transform:translateY(0) rotate(0deg);opacity:1}
+100%{transform:translateY(120vh) rotate(360deg);opacity:0}
+}
+.glow{
+position:absolute;
+width:300px;
+height:300px;
+background:radial-gradient(circle,rgba(255,255,255,0.4),transparent 70%);
+border-radius:50%;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+animation:float 6s ease-in-out infinite;
+z-index:1;
+}
+@keyframes float{
+0%{transform:translate(-50%,-50%) translateY(0)}
+50%{transform:translate(-50%,-50%) translateY(-20px)}
+100%{transform:translate(-50%,-50%) translateY(0)}
+}
+</style>
+</head>
+<body>
+<div class="glow"></div>
+<div id="container">
+<div id="name">Paula</div>
+<div id="subtitle">💗</div>
+</div>
+<script>
+const hearts=["💗","💖","💘","💕","💓","❤️"];
+function createHeart(){
+const h=document.createElement("div");
+h.className="heart";
+h.innerText=hearts[Math.floor(Math.random()*hearts.length)];
+h.style.left=Math.random()*100+"vw";
+h.style.fontSize=14+Math.random()*26+"px";
+h.style.animationDuration=4+Math.random()*4+"s";
+document.body.appendChild(h);
+setTimeout(()=>{h.remove()},9000);
+}
+setInterval(createHeart,200);
+</script>
+</body>
+</html>
